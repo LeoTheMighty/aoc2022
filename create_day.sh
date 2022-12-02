@@ -12,6 +12,7 @@ echo "Creating solution directory $1"
 if [ ! -d "src/$1" ]; then
   # Control will enter here if $DIRECTORY doesn't exist.
   mkdir "src/$1"
+  touch "src/$1/mod.rs"
   echo "pub mod solution;" >> "src/$1/mod.rs"
   cp "src/common/solution.rs" "src/$1/solution.rs"
 

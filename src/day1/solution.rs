@@ -9,20 +9,18 @@ pub fn get_solution(input_path: &str) -> String {
     let mut elves: Vec<i32> = Vec::new();
 
     if let Ok(lines) = read_lines(input_path) {
-        for line_result in lines {
-            if let Ok(line) = line_result {
-                if line.trim() == "" {
-                    println!("{}, {}", calorie, max_calorie);
-                    if calorie > max_calorie {
-                        max_calorie = calorie;
-                        elves.push(calorie);
-                    }
-                    calorie = 0;
-                } else {
-                    let n: i32 = line.trim().parse::<i32>().unwrap();
-
-                    calorie += n;
+        for line in lines.flatten() {
+            if line.trim() == "" {
+                println!("{}, {}", calorie, max_calorie);
+                if calorie > max_calorie {
+                    max_calorie = calorie;
+                    elves.push(calorie);
                 }
+                calorie = 0;
+            } else {
+                let n: i32 = line.trim().parse::<i32>().unwrap();
+
+                calorie += n;
             }
         }
     }
